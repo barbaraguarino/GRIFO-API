@@ -1,0 +1,13 @@
+package br.com.grifo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GrifoApiApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(GrifoApiApplication.class, args);
+    }
+
+}
