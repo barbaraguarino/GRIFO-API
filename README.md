@@ -56,8 +56,7 @@ src/main/
 └── resources/                          # 4. Arquivos Estáticos e Configurações
     ├── db/migration/                   # Scripts de versionamento do Flyway
     ├── i18n/                           # Dicionários de internacionalização
-    ├── application.yml                 # Variáveis de ambiente e configurações locais
-    └── application-prod.yml            # Configurações específicas para o deploy
+    └── application.properties          # Variáveis de ambiente e configurações locais
 ```
 
 ## Restrições de Escopo
