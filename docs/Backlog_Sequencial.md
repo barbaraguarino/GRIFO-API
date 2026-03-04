@@ -65,14 +65,16 @@ Estas tarefas já foram planejadas tecnicamente e devem ser executadas na ordem 
     3. **Tamanho**: S
     4. **Tag**: `core` + `sec`
     5. **Critérios de Aceitação**:
-        - [ ]  Criação de um `GlobalExceptionHandler` anotado com `@RestControllerAdvice`.
-        - [ ]  Criação de um objeto imutável `ApiErrorResponse` (DTO) contendo: `timestamp`, `status`, `error`, `message` e `path`.
-        - [ ]  Tratamento específico para `MethodArgumentNotValidException` (retorna HTTP 400 e a lista de campos inválidos).
-        - [ ]  Tratamento específico para `BusinessException` (exceção customizada nossa, retorna HTTP 400 ou 422).
-        - [ ]  Tratamento genérico para `Exception.class` (retorna HTTP 500 sem vazar a stacktrace real).
+        - [x]  Criação de um `GlobalExceptionHandler` anotado com `@RestControllerAdvice`.
+        - [x]  Criação de um objeto imutável `ApiErrorResponse` (DTO) contendo: `timestamp`, `status`, `error`, `message` e `path`.
+        - [x]  Tratamento específico para `MethodArgumentNotValidException` (retorna HTTP 400 e a lista de campos inválidos).
+        - [x]  Tratamento específico para `BusinessException` (exceção customizada nossa, retorna HTTP 400 ou 422).
+        - [x]  Tratamento genérico para `Exception.class` (retorna HTTP 500 sem vazar a stacktrace real).
     6. **Testes de Aceitação**:
-        - [ ]  Simular um erro de validação (ex: e-mail inválido) e verificar se o JSON retorna a estrutura padronizada com HTTP 400.
-        - [ ]  Simular um erro de sistema e garantir que o retorno seja um genérico "Erro interno no servidor" com HTTP 500.
+        - [x]  Simular um erro de validação (ex: e-mail inválido) e verificar se o JSON retorna a estrutura padronizada com HTTP 400.
+        - [x]  Simular um erro de sistema e garantir que o retorno seja um genérico "Erro interno no servidor" com HTTP 500.
+
+
 - [ ] **#2 Internacionalização (i18n)**
 
   **Motivação:** O GRIFO é uma plataforma literária com potencial para alcance internacional. A API deve ser capaz de retornar mensagens adaptadas ao idioma do cliente com base no header `Accept-Language`.
@@ -92,6 +94,8 @@ Estas tarefas já foram planejadas tecnicamente e devem ser executadas na ordem 
         - [ ]  Ao enviar **`Accept-Language: en`**, mensagens retornam em inglês.
         - [ ]  Ao enviar **`Accept-Language: pt-BR`**, mensagens retornam em português.
         - [ ]  Sem header, retorna idioma padrão.
+
+
 - [ ] **#3 Configuração Base de Segurança com JWT**
 
   **Motivação:** O GRIFO precisa proteger os dados de seus leitores e autores. O uso de JSON Web Tokens (JWT) permite uma arquitetura *Stateless* (sem estado), que é altamente escalável, rápida e o padrão da indústria para APIs REST.
