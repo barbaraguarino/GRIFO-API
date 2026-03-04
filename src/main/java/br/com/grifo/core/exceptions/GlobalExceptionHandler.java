@@ -24,12 +24,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ApiErrorResponse> handleBusinessException(BusinessException exception, HttpServletRequest request) {
-        String message = getTranslatedMessage(
-                exception.getMessageKey(),
-                exception.getArgs(),
-                "Erro de regra de negócio: " + exception.getMessageKey(),
-                request
-        );
+        String message = getTranslatedMessage(exception.getMessageKey(), exception.getArgs(), request);
         return buildErrorResponse(exception.getHttpStatus(), message, request, null);
     }
 
@@ -38,33 +33,26 @@ public class GlobalExceptionHandler {
         Map<String, String> validationErrors = exception.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(
                         FieldError::getField,
-                        fieldError -> fieldError.getDefaultMessage() != null ? fieldError.getDefaultMessage() : "Campo inválido",
+                        fieldError -> fieldError.getDefaultMessage() != null
+                                ? fieldError.getDefaultMessage()
+                                : getTranslatedMessage("error.validation.field", null, request),
                         (existing, ignored) -> existing
                 ));
 
-        String message = getTranslatedMessage(
-                "error.validation.generic",
-                null,
-                "Erro de validação nos dados fornecidos.",
-                request
-        );
+        String message = getTranslatedMessage("error.validation.generic", null, request);
         return buildErrorResponse(HttpStatus.BAD_REQUEST, message, request, validationErrors);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleAllUncaughtException(Exception exception, HttpServletRequest request) {
         log.error("Erro interno não tratado interceptado na URI: {}", request.getRequestURI(), exception);
-        String message = getTranslatedMessage(
-                "error.server.internal",
-                null,
-                "Ocorreu um erro interno inesperado no servidor. Contate o suporte.",
-                request
-        );
+
+        String message = getTranslatedMessage("error.server.internal", null, request);
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, message, request, null);
     }
 
-    private String getTranslatedMessage(String key, Object[] args, String defaultMessage, HttpServletRequest request) {
-        return messageSource.getMessage(key, args, defaultMessage, request.getLocale());
+    private String getTranslatedMessage(String key, Object[] args, HttpServletRequest request) {
+        return messageSource.getMessage(key, args, key, request.getLocale());
     }
 
     private ResponseEntity<ApiErrorResponse> buildErrorResponse(
