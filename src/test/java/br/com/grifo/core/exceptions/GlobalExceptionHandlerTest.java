@@ -47,7 +47,15 @@ class GlobalExceptionHandlerTest {
     @BeforeEach
     void setUp() {
         when(messageSource.getMessage(anyString(), any(), anyString(), any(Locale.class)))
-                .thenAnswer(invocation -> invocation.getArgument(2));
+                .thenAnswer(invocation -> {
+                    String key = invocation.getArgument(0);
+                    return switch (key) {
+                        case "error.server.internal" -> "Ocorreu um erro interno inesperado no servidor. Contate o suporte.";
+                        case "error.validation.generic" -> "Erro de validação nos dados fornecidos.";
+                        case "error.user.already_exists" -> "Erro de regra de negócio: error.user.already_exists";
+                        default -> key;
+                    };
+                });
 
         mockMvc = MockMvcBuilders.standaloneSetup(new DummyController())
                 .setControllerAdvice(globalExceptionHandler)

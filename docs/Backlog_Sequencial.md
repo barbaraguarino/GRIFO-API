@@ -75,7 +75,7 @@ Estas tarefas já foram planejadas tecnicamente e devem ser executadas na ordem 
         - [x]  Simular um erro de sistema e garantir que o retorno seja um genérico "Erro interno no servidor" com HTTP 500.
 
 
-- [ ] **#2 Internacionalização (i18n)**
+- [x] **#2 Internacionalização (i18n)**
 
   **Motivação:** O GRIFO é uma plataforma literária com potencial para alcance internacional. A API deve ser capaz de retornar mensagens adaptadas ao idioma do cliente com base no header `Accept-Language`.
 
@@ -84,16 +84,16 @@ Estas tarefas já foram planejadas tecnicamente e devem ser executadas na ordem 
     3. **Tamanho**: M
     4. **Tag**: `core` + `docs`
     5. **Critérios de Aceitação**:
-        - [ ]  Configuração de `MessageSource` centralizada.
-        - [ ]  Arquivos criados:
+        - [x]  Configuração de `MessageSource` centralizada.
+        - [x]  Arquivos criados:
             - `messages_pt_BR.properties`
             - `messages_en.properties`
-        - [ ]  Locale padrão definido como `pt-BR`.
-        - [ ]  Integrar com `GlobalExceptionHandler`.
+        - [x]  Locale padrão definido como `pt-BR`.
+        - [x]  Integrar com `GlobalExceptionHandler`.
     6. **Testes de Aceitação**:
-        - [ ]  Ao enviar **`Accept-Language: en`**, mensagens retornam em inglês.
-        - [ ]  Ao enviar **`Accept-Language: pt-BR`**, mensagens retornam em português.
-        - [ ]  Sem header, retorna idioma padrão.
+        - [x]  Ao enviar **`Accept-Language: en`**, mensagens retornam em inglês.
+        - [x]  Ao enviar **`Accept-Language: pt-BR`**, mensagens retornam em português.
+        - [x]  Sem header, retorna idioma padrão.
 
 
 - [ ] **#3 Configuração Base de Segurança com JWT**
